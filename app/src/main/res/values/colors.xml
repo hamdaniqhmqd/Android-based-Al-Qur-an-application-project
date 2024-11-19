@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="bg_hitam">#040D12</color>
+    <color name="putih">#F5F5F5</color>
+    <color name="putih_rodok">#838B92</color>
+    <color name="putih_smoot">#2A343A</color>
+</resources>
