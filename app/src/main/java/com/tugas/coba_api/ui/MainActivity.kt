@@ -1,5 +1,6 @@
 package com.tugas.coba_api.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -31,32 +32,43 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        val adapter = AdapterSurah()
+
+        // Inisialisasi adapter dengan onClick handling
+        val adapter = AdapterSurah { surah ->
+            // Pindah ke DetailActivity dengan data item
+            val intent = Intent(this, DetailActivity::class.java)
+            intent.putExtra("SURAH_DETAIL", surah) // Kirim data menggunakan Parcelable atau Serializable
+            startActivity(intent)
+        }
         binding.recyclerView.adapter = adapter
 
+        // Inisialisasi Retrofit
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiService::class.java)
 
+        // Mengambil data dari API
         lifecycleScope.launch {
-            val response = retrofit.getData()
-            if (response.isSuccessful) {
-                Toast.makeText(this@MainActivity, "Berhasil terhubung", Toast.LENGTH_LONG).show()
-                launch(Dispatchers.Main) {
-                    if (response.body() != null) {
-                        val recyclerAdapter = AdapterSurah()
-                        recyclerAdapter.submitList(response.body())
-                        binding.recyclerView.adapter = recyclerAdapter
-                    }
+            try {
+                val response = retrofit.getData()
+                if (response.isSuccessful && response.body() != null) {
+                    Toast.makeText(this@MainActivity, "Berhasil terhubung", Toast.LENGTH_LONG).show()
+                    adapter.submitList(response.body()) // Masukkan data ke adapter
+                } else {
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Gagal memuat data: ${response.code()}",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
-            } else {
-                Toast.makeText(this@MainActivity, "Gagal: ${response.code()}", Toast.LENGTH_LONG)
-                    .show()
+            } catch (e: Exception) {
+                Toast.makeText(this@MainActivity, "Error: ${e.message}", Toast.LENGTH_LONG).show()
             }
         }
     }
 }
+
 
 

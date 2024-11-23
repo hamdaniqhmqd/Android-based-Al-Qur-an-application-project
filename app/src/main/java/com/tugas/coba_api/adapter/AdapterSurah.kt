@@ -9,29 +9,40 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tugas.coba_api.data.al_quran.AlQuranResponse
 import com.tugas.coba_api.databinding.ItemAlQuranBinding
 
-class AdapterSurah :
-    ListAdapter<AlQuranResponse, AdapterSurah.SurahViewHolder>(PokemonDiffCallback()) {
+class AdapterSurah(
+    private val onClick: (AlQuranResponse) -> Unit
+) : ListAdapter<AlQuranResponse, AdapterSurah.SurahViewHolder>(SurahDiffCallback()) {
 
     class SurahViewHolder(val binding: ItemAlQuranBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SurahViewHolder {
-        val binding = ItemAlQuranBinding.inflate(LayoutInflater.from(parent.context))
+        val binding = ItemAlQuranBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
         return SurahViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: SurahViewHolder, position: Int) {
         val data = getItem(position)
 
-        holder.binding.number.text = data.nomor.toString()
-        holder.binding.NamaSurah.text = data.nama_latin
-        holder.binding.ArtiSurah.text = data.arti
-        holder.binding.NamaLatinSurah.text = data.nama
-        holder.binding.BanyakAyat.text = "${data.jumlah_ayat} Ayat"
+        holder.binding.apply {
+            number.text = data.nomor.toString()
+            NamaSurah.text = data.nama_latin
+            ArtiSurah.text = data.arti
+            NamaLatinSurah.text = data.nama
+            BanyakAyat.text = "${data.jumlah_ayat} Ayat"
+
+            // Set onClick listener
+            root.setOnClickListener {
+                onClick(data)
+            }
+        }
     }
 
-
-    class PokemonDiffCallback : DiffUtil.ItemCallback<AlQuranResponse>() {
+    class SurahDiffCallback : DiffUtil.ItemCallback<AlQuranResponse>() {
         override fun areItemsTheSame(oldItem: AlQuranResponse, newItem: AlQuranResponse): Boolean {
             return oldItem.nomor == newItem.nomor
         }

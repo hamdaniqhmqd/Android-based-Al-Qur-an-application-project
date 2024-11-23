@@ -1,14 +1,17 @@
 package com.tugas.coba_api.data.al_quran
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class AlQuranResponse (
-    @SerializedName("nomor"       ) var nomor       : Int?     = null,
-    @SerializedName("nama"     ) var nama     : String?  = null,
-    @SerializedName("nama_latin" ) var nama_latin : String?  = null,
-    @SerializedName("jumlah_ayat" ) var jumlah_ayat : Int?  = null,
-    @SerializedName("tempat_turun" ) var tempat_turun : String?  = null,
-    @SerializedName("arti" ) var arti : String?  = null,
-    @SerializedName("deskripsi" ) var deskripsi : String?  = null,
-    @SerializedName("audio" ) var audio : String?  = null,
-)
+    @SerializedName("nomor") var nomor: Int? = null,
+    @SerializedName("nama") var nama: String? = null,
+    @SerializedName("nama_latin") var nama_latin: String? = null,
+    @SerializedName("jumlah_ayat") var jumlah_ayat: Int? = null,
+    @SerializedName("tempat_turun") var tempat_turun: String? = null,
+    @SerializedName("arti") var arti: String? = null,
+    @SerializedName("deskripsi") var deskripsi: String? = null,
+    @SerializedName("audio") var audio: String? = null,
+) : Parcelable
