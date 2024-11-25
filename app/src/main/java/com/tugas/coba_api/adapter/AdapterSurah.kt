@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.tugas.coba_api.data.al_quran.AlQuranResponse
 import com.tugas.coba_api.databinding.ItemAlQuranBinding
 
@@ -34,6 +35,11 @@ class AdapterSurah(
             ArtiSurah.text = data.arti
             NamaLatinSurah.text = data.nama
             BanyakAyat.text = "${data.jumlah_ayat} Ayat"
+
+            // Load gambar menggunakan Glide
+            Glide.with(holder.binding.imageView.context)
+                .load("https://www.pinclipart.com/picdir/big/36-364719_nomor-ayat-al-quran-clipart.png")
+                .into(holder.binding.imageView)
 
             // Set onClick listener
             root.setOnClickListener {
