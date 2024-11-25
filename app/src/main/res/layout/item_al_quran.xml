@@ -25,14 +25,25 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.5" />
 
-        <View
-            android:id="@+id/view"
+<!--        <View-->
+<!--            android:id="@+id/view"-->
+<!--            android:layout_width="54dp"-->
+<!--            android:layout_height="54dp"-->
+<!--            android:layout_marginVertical="28dp"-->
+<!--            android:layout_marginStart="28dp"-->
+<!--            android:background="@drawable/card_rounded"-->
+<!--            android:rotation="45"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"/>-->
+
+        <ImageView
+            android:id="@+id/image_view"
             android:layout_width="54dp"
             android:layout_height="54dp"
             android:layout_marginVertical="28dp"
             android:layout_marginStart="28dp"
-            android:background="@drawable/card_rounded"
-            android:rotation="45"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
@@ -48,8 +59,8 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/garis_horizontal"
-            app:layout_constraintEnd_toEndOf="@+id/view"
-            app:layout_constraintStart_toStartOf="@+id/view"
+            app:layout_constraintEnd_toEndOf="@+id/image_view"
+            app:layout_constraintStart_toStartOf="@+id/image_view"
             app:layout_constraintTop_toTopOf="@+id/garis_horizontal" />
 
         <TextView
@@ -62,7 +73,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/garis_horizontal"
-            app:layout_constraintStart_toEndOf="@+id/view" />
+            app:layout_constraintStart_toEndOf="@+id/image_view" />
 
         <TextView
             android:id="@+id/ArtiSurah"
@@ -73,7 +84,7 @@
             android:textColor="@color/putih_rodok"
             android:textSize="14sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintStart_toEndOf="@+id/image_view"
             app:layout_constraintTop_toTopOf="@+id/garis_horizontal" />
 
         <TextView
