@@ -2,6 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("kotlin-parcelize")
+    id("com.google.devtools.ksp")
+//    id("com.android.application")
+//    id("com.google.gms.google-services")
 }
 
 android {
@@ -43,7 +46,7 @@ android {
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:1.13.0")
+    implementation(libs.androidx.core.ktx)
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
@@ -65,6 +68,11 @@ dependencies {
     implementation("com.google.android.exoplayer:exoplayer:2.19.0")
 
     implementation("com.github.bumptech.glide:glide:4.16.0")
+//    ksp("com.github.bumptech.glide:compiler:4.16.0")
+
+//    implementation(platform("com.google.firebase:firebase-bom:33.6.0"))
+//    implementation("com.google.firebase:firebase-analytics")
+//    implementation("com.google.firebase:firebase-database:ktx")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
